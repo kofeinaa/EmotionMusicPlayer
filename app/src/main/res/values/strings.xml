@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Emotion Music Player</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_emotion_settings">Emotion Settings</string>
+    <string name="text_view">Current mood</string>
+    <string name="title">Title</string>
+    <string name="textview">TextView</string>
+    <string name="NO_PERMISSION">No permission</string>
+    <string name="WELCOME">Welcome!</string>
+</resources>
