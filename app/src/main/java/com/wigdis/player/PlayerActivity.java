@@ -255,33 +255,33 @@ public class PlayerActivity extends AppCompatActivity {
     //set values - according to paper
     private void initializeEmotionMap() {
 
-        emotionMap.put("Afraid", new Pair<>(-3.5, 7.));
-        emotionMap.put("Alarmed", new Pair<>(-0.4, 7.9));
-        emotionMap.put("Angry", new Pair<>(-1.1, 7.));
-        emotionMap.put("Annoyed", new Pair<>(-3.8, 5.7));
-        emotionMap.put("Aroused", new Pair<>(2.3, 8.1));
-        emotionMap.put("Astonished", new Pair<>(3., 7.7));
-        emotionMap.put("At ease", new Pair<>(6.5, -5.5));
-        emotionMap.put("Bored", new Pair<>(-3.3, -6.4));
-        emotionMap.put("Calm", new Pair<>(5.8, -6.3));
-        emotionMap.put("Content", new Pair<>(6.8, -5.3));
-        emotionMap.put("Delighted", new Pair<>(6.9, 3.2));
-        emotionMap.put("Depressed", new Pair<>(-6.4, -4.1));
-        emotionMap.put("Distressed", new Pair<>(-5.8, 5.));
-        emotionMap.put("Droopy", new Pair<>(-2., -8.2));
-        emotionMap.put("Excited", new Pair<>(5.5, 6.5));
-        emotionMap.put("Frustrated", new Pair<>(-4.8, 4.));
-        emotionMap.put("Glad", new Pair<>(8., -1.5));
-        emotionMap.put("Gloomy", new Pair<>(-6.9, -4.2));
-        emotionMap.put("Happy", new Pair<>(7.4, 1.));
-        emotionMap.put("Miserable", new Pair<>(-8., -1.3));
-        emotionMap.put("Pleased", new Pair<>(7.5, -1.));
-        emotionMap.put("Relaxed", new Pair<>(6.1, -5.8));
-        emotionMap.put("Sad", new Pair<>(-6.5, -3.5));
-        emotionMap.put("Satisfied", new Pair<>(6.5, -5.8));
-        emotionMap.put("Serene", new Pair<>(6.8, -4.4));
-        emotionMap.put("Sleepy", new Pair<>(0.2, -9.));
-        emotionMap.put("Tense", new Pair<>(-0.2, 7.3));
-        emotionMap.put("Tired", new Pair<>(-0.3, -8.8));
+        emotionMap.put("Afraid", new Pair<>(-0.35, 0.7));
+        emotionMap.put("Alarmed", new Pair<>(-0.04, 0.79));
+        emotionMap.put("Angry", new Pair<>(-0.11, 0.7));
+        emotionMap.put("Annoyed", new Pair<>(-0.38, 0.57));
+        emotionMap.put("Aroused", new Pair<>(0.23, 8.1));
+        emotionMap.put("Astonished", new Pair<>(0.3, 0.77));
+        emotionMap.put("At ease", new Pair<>(0.65, -0.55));
+        emotionMap.put("Bored", new Pair<>(-0.33, -0.64));
+        emotionMap.put("Calm", new Pair<>(0.58, -0.63));
+        emotionMap.put("Content", new Pair<>(0.68, -0.53));
+        emotionMap.put("Delighted", new Pair<>(0.69, 0.32));
+        emotionMap.put("Depressed", new Pair<>(-0.64, -0.41));
+        emotionMap.put("Distressed", new Pair<>(-0.58, 0.5));
+        emotionMap.put("Droopy", new Pair<>(-0.2, -0.82));
+        emotionMap.put("Excited", new Pair<>(0.55, 0.65));
+        emotionMap.put("Frustrated", new Pair<>(-0.48, 0.4));
+        emotionMap.put("Glad", new Pair<>(0.8, -0.15));
+        emotionMap.put("Gloomy", new Pair<>(-0.69, -0.42));
+        emotionMap.put("Happy", new Pair<>(0.74, 0.1));
+        emotionMap.put("Miserable", new Pair<>(-0.8, -0.13));
+        emotionMap.put("Pleased", new Pair<>(0.75, -0.1));
+        emotionMap.put("Relaxed", new Pair<>(0.61, -0.58));
+        emotionMap.put("Sad", new Pair<>(-0.65, -0.35));
+        emotionMap.put("Satisfied", new Pair<>(0.65, -0.58));
+        emotionMap.put("Serene", new Pair<>(0.68, -0.44));
+        emotionMap.put("Sleepy", new Pair<>(0.02, -0.9));
+        emotionMap.put("Tense", new Pair<>(-0.02, 0.73));
+        emotionMap.put("Tired", new Pair<>(-0.03, -0.88));
     }
 }
