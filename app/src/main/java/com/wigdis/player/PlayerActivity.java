@@ -93,6 +93,7 @@ public class PlayerActivity extends AppCompatActivity {
 
         initializeEmotionMap();
 
+
         setContentView(R.layout.activity_player);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -106,6 +107,7 @@ public class PlayerActivity extends AppCompatActivity {
         }
 
         loadAudio();
+        saveDefaultMoodIfNotPresented();
 
         ImageButton playButton = (ImageButton) findViewById(R.id.play_button);
         ImageButton nextButton = (ImageButton) findViewById(R.id.next_button);
@@ -129,6 +131,17 @@ public class PlayerActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+    }
+
+    private void saveDefaultMoodIfNotPresented() {
+        StorageUtil storage = new StorageUtil(getApplicationContext());
+        Mood mood = storage.loadMood();
+        if (mood == null){
+            storage.storeMood (new Mood("Afraid",
+                            emotionMap.get("Afraid").first, emotionMap.get("Afraid").second));
+        }
     }
 
     private void playAudio() {
