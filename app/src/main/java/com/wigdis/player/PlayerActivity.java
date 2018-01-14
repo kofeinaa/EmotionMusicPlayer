@@ -29,18 +29,13 @@ import java.util.Map;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    private MediaPlayerService player;
-    boolean serviceBound = false;
-
-    ArrayList<Audio> audioList;
-
-    public static Map<String, Pair<Double, Double>> emotionMap = new HashMap<>();
-
-    private final static int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     public static final String Broadcast_PLAY_NEW_AUDIO = "com.wigdis.player.PlayNewAudio";
     public static final String Broadcast_PLAY_ANOTHER = "com.wigdis.player.PlayAnother";
-
-
+    private final static int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
+    public static Map<String, Pair<Double, Double>> emotionMap = new HashMap<>();
+    boolean serviceBound = false;
+    ArrayList<Audio> audioList;
+    private MediaPlayerService player;
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -58,26 +53,6 @@ public class PlayerActivity extends AppCompatActivity {
             serviceBound = false;
         }
     };
-
-    class MyResultReceiver extends ResultReceiver
-    {
-        public MyResultReceiver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        protected void onReceiveResult(int resultCode, Bundle resultData) {
-            if(resultCode == 200) {
-                setTrackInfoOnView();
-            } else if(resultCode == 1){
-                ImageButton imageButton = findViewById(R.id.play_button);
-                imageButton.setImageResource(android.R.drawable.ic_media_pause);
-            } else if(resultCode == 0){
-                ImageButton imageButton = findViewById(R.id.play_button);
-                imageButton.setImageResource(android.R.drawable.ic_media_play);
-            }
-        }
-    }
 
     private void setTrackInfoOnView() {
         TextView title = findViewById(R.id.title);
@@ -104,8 +79,12 @@ public class PlayerActivity extends AppCompatActivity {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        } else {
+            loadDefaultView();
         }
+    }
 
+    private void loadDefaultView(){
         loadAudio();
         saveDefaultMoodIfNotPresented();
 
@@ -121,18 +100,17 @@ public class PlayerActivity extends AppCompatActivity {
         });
 
         nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (serviceBound) {
-                    Intent broadcastIntent = new Intent(Broadcast_PLAY_ANOTHER);
-                    sendBroadcast(broadcastIntent);
-                } else {
-                    playAudio();
-                }
-            }
-        });
-
-
+                                          @Override
+                                          public void onClick(View view) {
+                                              if (serviceBound) {
+                                                  Intent broadcastIntent = new Intent(Broadcast_PLAY_ANOTHER);
+                                                  sendBroadcast(broadcastIntent);
+                                              } else {
+                                                  playAudio();
+                                              }
+                                          }
+                                      }
+        );
     }
 
     private void saveDefaultMoodIfNotPresented() {
@@ -161,7 +139,6 @@ public class PlayerActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_player, menu);
@@ -186,7 +163,6 @@ public class PlayerActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
     }
 
-
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -207,7 +183,7 @@ public class PlayerActivity extends AppCompatActivity {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+                    loadDefaultView();
                 } else {
                     setNoPermissionOnView();
                 }
@@ -230,7 +206,6 @@ public class PlayerActivity extends AppCompatActivity {
         title.setText(R.string.WELCOME);
         artist.setText("");
     }
-
 
     private void loadAudio() {
 
@@ -296,5 +271,25 @@ public class PlayerActivity extends AppCompatActivity {
         emotionMap.put("Sleepy", new Pair<>(0.02, -0.9));
         emotionMap.put("Tense", new Pair<>(-0.02, 0.73));
         emotionMap.put("Tired", new Pair<>(-0.03, -0.88));
+    }
+
+    class MyResultReceiver extends ResultReceiver
+    {
+        public MyResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            if(resultCode == 200) {
+                setTrackInfoOnView();
+            } else if(resultCode == 1){
+                ImageButton imageButton = findViewById(R.id.play_button);
+                imageButton.setImageResource(android.R.drawable.ic_media_pause);
+            } else if(resultCode == 0){
+                ImageButton imageButton = findViewById(R.id.play_button);
+                imageButton.setImageResource(android.R.drawable.ic_media_play);
+            }
+        }
     }
 }
